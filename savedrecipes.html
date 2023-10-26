@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Saved Recipes</title>
+  <link rel="stylesheet" href="./savedrecipes.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html>
+<head>
+  <title>Save Items Example</title>
+</head>
+<body>
+  <h1>My Favorite Recipes</h1>
+  <ul id="item-list">
+    <!-- Saved items will be displayed here -->
+  </ul>
+
+  <label for="item-name">Recipe Name: </label>
+  <input type="text" id="item-name" placeholder="Enter a name">
+  <label for="item-link">Recipe Link: </label>
+  <input type="text" id="item-link" placeholder="Enter a link">
+  <button onclick="addItem()">Save Recipe</button>
+
+  <script>
+    // Function to add an item to the list
+    function addItem() {
+      const nameInput = document.getElementById('item-name');
+      const linkInput = document.getElementById('item-link');
+      const name = nameInput.value.trim();
+      const link = linkInput.value.trim();
+
+      if (name && link) {
+        const itemList = document.getElementById('item-list');
+        const listItem = document.createElement('li');
+
+        // Display the name and link as a clickable link
+        const linkElement = document.createElement('a');
+        linkElement.textContent = name;
+        linkElement.href = link;
+        linkElement.target = '_blank'; // Opens in a new tab
+
+        listItem.appendChild(linkElement);
+
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+          removeItem(name, link);
+          itemList.removeChild(listItem);
+        };
+        listItem.appendChild(deleteButton);
+
+        // Save the item to local storage
+        saveItem(name, link);
+
+        itemList.appendChild(listItem);
+
+        // Clear input fields
+        nameInput.value = '';
+        linkInput.value = '';
+      }
+    }
+
+    // Function to save an item to local storage
+    function saveItem(name, link) {
+      // Get the existing items from local storage or create an empty array of objects
+      let savedItems = JSON.parse(localStorage.getItem('items')) || [];
+
+      // Add the new item as an object with a name and link
+      savedItems.push({ name, link });
+
+      // Save the updated array back to local storage
+      localStorage.setItem('items', JSON.stringify(savedItems));
+    }
+
+    // Function to remove an item from local storage
+    function removeItem(name, link) {
+      let savedItems = JSON.parse(localStorage.getItem('items')) || [];
+      const index = savedItems.findIndex(item => item.name === name && item.link === link);
+      if (index !== -1) {
+        savedItems.splice(index, 1);
+        localStorage.setItem('items', JSON.stringify(savedItems));
+      }
+    }
+
+    // Load and display saved items when the page loads
+    window.addEventListener('load', function() {
+      const itemList = document.getElementById('item-list');
+      const savedItems = JSON.parse(localStorage.getItem('items')) || [];
+
+      savedItems.forEach(function(item) {
+        const listItem = document.createElement('li');
+
+        // Display the name and link as a clickable link
+        const linkElement = document.createElement('a');
+        linkElement.textContent = item.name;
+        linkElement.href = item.link;
+        linkElement.target = '_blank'; // Opens in a new tab
+
+        listItem.appendChild(linkElement);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+          removeItem(item.name, item.link);
+          itemList.removeChild(listItem);
+        };
+        listItem.appendChild(deleteButton);
+
+        itemList.appendChild(listItem);
+      });
+    });
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

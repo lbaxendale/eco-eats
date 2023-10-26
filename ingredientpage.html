@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Create a recipe</title>
+  <link rel="stylesheet" href="./ingredientpage.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+  <html>
+<head>
+    <script src="ingredientpage.css"></script>
+    <title>Ingredient Selection</title>
+    <title>Ingredient List</title>
+</head>
+
+<body>
+    <h1>Select Ingredients</h1>
+    <h2>Pantry Essentials</h2>
+    <div id="Pantry_Essentials_Buttons">
+        <button class="ingredient-button" data-ingredient="egg">Egg</button>
+        <button class="ingredient-button" data-ingredient="butter">Butter</button>
+        <button class="ingredient-button" data-ingredient="flour">Flour</button>
+        <button class="ingredient-button" data-ingredient="milk">Milk</button>
+        <button class="ingredient-button" data-ingredient="sugar">Sugar</button>
+        <!-- Add more ingredient buttons as needed -->
+    </div>
+
+    <h2>Carbohydrates</h2>
+    <div id="Meat_Buttons">
+        <button class="ingredient-button" data-ingredient="bread">Bread</button>
+        <button class="ingredient-button" data-ingredient="noodles">Noodles</button>
+        <button class="ingredient-button" data-ingredient="rice">Rice</button>
+        <button class="ingredient-button" data-ingredient="pasta">Pasta</button>
+        <!-- Add more ingredient buttons as needed -->
+    </div>
+   
+    <h2>Meat & Fish</h2>
+    <div id="Meat_Buttons">
+        <button class="ingredient-button" data-ingredient="chicken">Chicken</button>
+        <button class="ingredient-button" data-ingredient="pork">Pork</button>
+        <button class="ingredient-button" data-ingredient="beef">Beef</button>
+        <button class="ingredient-button" data-ingredient="salmon">Salmon</button>
+        <!-- Add more ingredient buttons as needed -->
+    </div>
+   
+    <h2>Fruit</h2>
+    <div id = "Fruit_Buttons">
+        <button class="ingredient-button" data-ingredient="apple">Apple</button>
+        <button class="ingredient-button" data-ingredient="banana">Banana</button>
+        <button class="ingredient-button" data-ingredient="blueberries">Blueberries</button>
+        <button class="ingredient-button" data-ingredient="strawberries">Strawberries</button>
+    </div>
+   
+    <h2>Vegetables</h2>
+    <div id="Veg_Buttons">
+        <button class="ingredient-button" data-ingredient="broccoli">Broccoli</button>
+        <button class="ingredient-button" data-ingredient="carrots">Carrots</button>
+        <button class="ingredient-button" data-ingredient="peppers">Peppers</button>
+        <button class="ingredient-button" data-ingredient="onions">Onions</button>
+        <!-- Add more ingredient buttons as needed -->
+    </div>   
+
+    <h2>Selected Ingredients:</h2>
+    <div id="selectedIngredients"></div>
+
+    <h2>Recipe:</h2>
+    <div id="recipe"></div>
+
+    <script>
+        // Simulated recipe database
+        var recipeDatabase = {
+            omelette: ["egg", "butter"],
+            pancakes: ["egg", "butter", "flour", "milk"],
+            scrambledEggs: ["egg", "butter", "milk"],
+            blueberryMuffins: ["egg", "butter", "flour", "milk", "sugar", "blueberries"],
+            vegetableStirfry: ["broccoli", "carrots", "peppers", "onions"],
+            bananaBread: ["egg", "butter", "flour", "milk", "sugar", "banana"],
+            chickenNoodleSoup: ["chicken", "noodles"],
+            vegStirfryNoodles: ["broccoli", "carrots", "peppers", "onions", "noodles"],
+            vegStirfryRice: ["broccoli", "carrots", "peppers", "onions", "rice"]
+            // Add more recipes and their required ingredients
+        };
+
+        // Get all ingredient buttons
+        var ingredientButtons = document.querySelectorAll(".ingredient-button");
+
+        // Create an array to store the selected ingredients
+        var selectedIngredients = [];
+
+        // Add click event listeners to each ingredient button
+        ingredientButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var ingredient = button.getAttribute("data-ingredient");
+
+                // Toggle the selected state of the button
+                button.classList.toggle("selected");
+
+                // Add or remove the ingredient from the selectedIngredients array
+                if (button.classList.contains("selected")) {
+                    selectedIngredients.push(ingredient);
+                } else {
+                    var index = selectedIngredients.indexOf(ingredient);
+                    if (index > -1) {
+                        selectedIngredients.splice(index, 1);
+                    }
+                }
+
+                // Display the selected ingredients
+                var selectedIngredientsDiv = document.getElementById("selectedIngredients");
+                selectedIngredientsDiv.innerHTML = selectedIngredients.join(', ');
+
+                // Generate and display the recipe
+                var recipeDiv = document.getElementById("recipe");
+                var recipe = findRecipe(selectedIngredients);
+                recipeDiv.innerHTML = recipe;
+            });
+        });
+
+        // Function to find a recipe based on selected ingredients
+        function findRecipe(ingredients) {
+            if (ingredients.length === 0) {
+                return "Select ingredients to find a recipe.";
+            }
+
+            for (var recipe in recipeDatabase) {
+                var requiredIngredients = recipeDatabase[recipe];
+                if (requiredIngredients.every(ingredient => ingredients.includes(ingredient))) {
+                    return "You can make " + formatRecipeName(recipe) + "!";
+                }
+            }
+            return "No matching recipe found.";
+        }
+
+        // Function to format recipe name
+        function formatRecipeName(recipe) {
+            return recipe
+                .replace(/([A-Z])/g, ' $1') // Insert space before capital letters
+                .replace(/^\w/, c => c.toUpperCase()); // Capitalize the first letter
+        }
+    </script>
+
+<style>
+    .ingredient-button {
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    .selected {
+        background-color: #ff6600; /* Change the background color when selected */
+    }
+</style>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

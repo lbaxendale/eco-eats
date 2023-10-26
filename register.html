@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Register/Log In</title>
+  <link rel="stylesheet" href="./register.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<header>
+        <a href="homepage.html" class="brand">Eco Eats</a>
+        <div class="navigation">
+        <div class="navigation-items">
+           <a href="homepage.html">Home</a>
+<a href="about.html" class="about-link">About us</a>
+<a href="ingredientpage.html" class="create">Create your recipe</a>
+<a href="savedrecipes.html" class="saved">Saved recipes</a>
+<a href="contactpage.html" class="contact">Contact</a>
+<a href="register.html">Log in</a>
+</div>
+</header>
+<div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <div id="message"></div>
+    </div>
+     <ul class="sci">
+        <li>
+            <a href="http://facebook.com/" target="_blank">
+                <img src="facebook.png" style="width: 2em; height: 3em" id="fb" alt="Facebook Icon">
+            </a>
+        </li>
+        <li>
+            <a href="http://instagram.com/" target="_blank">
+                <img src="instagram.png" style="width: 2em; height: 3em" id="insta" alt="Instagram Icon">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.tiktok.com/" target="_blank">
+                <img src="tiktoklogo.png" style="width: 2em; height: 3em" id="tiktok" alt="TikTok Icon">
+            </a>
+        </li>
+    </ul>
+<!-- partial -->
+  <script  src="./register.js"></script>
+
+</body>
+</html>

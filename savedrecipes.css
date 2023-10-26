@@ -1,0 +1,79 @@
+/* Style the page background */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #DADDB1; /* Light Green background */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+h1 {
+  text-align: center;
+  background-color: #016A70; /* Teal background */
+  color: #fff; /* White text color */
+  padding: 10px 0;
+}
+
+
+head .brand {
+  color: #faf8ed;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  justify-content: left;
+}
+
+/* Favorites list container */
+#item-list {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #D6C7AE; /* Light Gray background */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* List item styling */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Save item input and button styling */
+label {
+  font-weight: bold;
+}
+
+#item-input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #016A70; /* Teal background */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #004D52; /* Slightly darker teal on hover */
+}
+
+/* Styling for favorited items in the list */
+/* You can add your own styles here */
+li.favorited {
+  color: #DADDB1; /* Light Green text color for favorited items */
+  font-weight: bold;
+}
